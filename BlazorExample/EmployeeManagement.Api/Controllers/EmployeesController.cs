@@ -138,7 +138,7 @@ namespace EmployeeManagement.Api.Controllers
 
 
         /// <summary>
-        /// DELEE method
+        /// DELETE method
         /// Delete employee into repository by id
         /// </summary>
         /// <param name="id">id of employee</param>
