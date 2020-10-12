@@ -9,24 +9,38 @@ namespace EmployeeManagement.Api.Models
 {
     public class EmployeeRepository : IEmployeeRepository
     {
+        /// <summary>
+        /// DB context, connect in startup method ConfigureServices
+        /// </summary>
         private readonly AppDbContext appDbContext;
 
+        /// <sinheritdoc/>
         public EmployeeRepository(AppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
         }
 
+        /// <sinheritdoc/>
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             return await appDbContext.Employees.ToListAsync();
         }
 
+        /// <sinheritdoc/>
         public async Task<Employee> GetEmployee(int employeeId)
         {
             return await appDbContext.Employees
                 .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
         }
 
+        /// <sinheritdoc/>
+        public async Task<Employee> GetEmployeeByEmail(string email)
+        {
+            return await appDbContext.Employees
+                .FirstOrDefaultAsync(e => e.Email == email);
+        }
+
+        /// <sinheritdoc/>
         public async Task<Employee> AddEmployee(Employee employee)
         {
             var result = await appDbContext.Employees.AddAsync(employee);
@@ -34,6 +48,7 @@ namespace EmployeeManagement.Api.Models
             return result.Entity;
         }
 
+        /// <sinheritdoc/>
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
             var result = await appDbContext.Employees
@@ -57,6 +72,7 @@ namespace EmployeeManagement.Api.Models
             return null;
         }
 
+        /// <sinheritdoc/>
         public async void DeleteEmployee(int employeeId)
         {
             var result = await appDbContext.Employees
