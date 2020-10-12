@@ -37,6 +37,6 @@ namespace EmployeeManagement.Api.Models
         /// <summary>
         ///  Delete employee
         /// </summary>
-        void DeleteEmployee(int employeeId);
+        Task<Employee> DeleteEmployee(int employeeId);
     }
 }

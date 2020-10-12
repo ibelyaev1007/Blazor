@@ -137,6 +137,12 @@ namespace EmployeeManagement.Api.Controllers
         }
 
 
+        /// <summary>
+        /// DELEE method
+        /// Delete employee into repository by id
+        /// </summary>
+        /// <param name="id">id of employee</param>
+        /// <returns>data or Not Found(404) or Error(500)</returns>
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<Employee>> DeleteEmployee(int id)
         {
@@ -158,5 +164,4 @@ namespace EmployeeManagement.Api.Controllers
             }
         }
     }
-}
 }
