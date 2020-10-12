@@ -31,6 +31,7 @@ namespace EmployeeManagement.Api
             services.AddControllers();
 
             // Rest of the code
+            // Instances to be alive and available for the entire scope of the given HTTP request.
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
