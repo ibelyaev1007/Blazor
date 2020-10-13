@@ -168,7 +168,7 @@ namespace EmployeeManagement.Api.Controllers
 
         /// <summary>
         /// SEARCH method
-        /// Delete employee into repository by id
+        /// Search employee into repository by name and gender
         /// </summary>
         /// <param name="name">name of employee</param>
         /// <param name="gender">gender of employee</param>
