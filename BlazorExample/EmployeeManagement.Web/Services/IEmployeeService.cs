@@ -10,8 +10,13 @@ namespace EmployeeManagement.Web.Services
     public interface IEmployeeService
     {
         /// <summary>
-        /// Get all employees
+        /// Get all employees via api
         /// </summary>
         Task<IEnumerable<Employee>> GetEmployees();
+
+        /// <summary>
+        /// Get employee by id
+        /// </summary>
+        Task<Employee> GetEmployee(int id);
     }
 }

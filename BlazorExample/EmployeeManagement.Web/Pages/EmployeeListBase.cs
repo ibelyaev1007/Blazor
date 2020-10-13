@@ -10,11 +10,19 @@ namespace EmployeeManagement.Web.Pages
 {
     public class EmployeeListBase : ComponentBase
     {
+        /// <summary>
+        /// Employee Service
+        /// use [Inject] attribute to inject a service into a Blazor component.
+        /// </summary>
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
 
+        /// <summary>
+        /// Gets, sets employees
+        /// </summary>
         public IEnumerable<Employee> Employees { get; set; }
 
+        /// <sinheritdoc/>
         protected override async Task OnInitializedAsync()
         {
             Employees = (await EmployeeService.GetEmployees()).ToList();
