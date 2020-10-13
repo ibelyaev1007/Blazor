@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EmployeeManagement.Api.Models;
 using EmployeeManagement.Models;
@@ -161,6 +163,34 @@ namespace EmployeeManagement.Api.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error deleting data");
+            }
+        }
+
+        /// <summary>
+        /// SEARCH method
+        /// Delete employee into repository by id
+        /// </summary>
+        /// <param name="name">name of employee</param>
+        /// <param name="gender">gender of employee</param>
+        /// <returns>data or Not Found(404) or Error(500)</returns>
+        [HttpGet("{search}/{name}/{gender?}")]
+        public async Task<ActionResult<IEnumerable<Employee>>> Search(string name, Gender? gender)
+        {
+            try
+            {
+                var result = await employeeRepository.Search(name, gender);
+
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
             }
         }
     }

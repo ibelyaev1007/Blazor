@@ -38,5 +38,10 @@ namespace EmployeeManagement.Api.Models
         ///  Delete employee
         /// </summary>
         Task<Employee> DeleteEmployee(int employeeId);
+
+        /// <summary>
+        ///  Search by name and gender
+        /// </summary>
+        Task<IEnumerable<Employee>> Search(string name, Gender? gender);
     }
 }
