@@ -12,46 +12,46 @@ namespace EmployeeManagement.Api.Models
         /// <summary>
         /// DB context, connect in startup method ConfigureServices
         /// </summary>
-        private readonly AppDbContext appDbContext;
+        private readonly AppDbContext _appDbContext;
 
         /// <sinheritdoc/>
         public EmployeeRepository(AppDbContext appDbContext)
         {
-            this.appDbContext = appDbContext;
+            this._appDbContext = appDbContext;
         }
 
         /// <sinheritdoc/>
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return await appDbContext.Employees.ToListAsync();
+            return await _appDbContext.Employees.ToListAsync();
         }
 
         /// <sinheritdoc/>
         public async Task<Employee> GetEmployee(int employeeId)
         {
-            return await appDbContext.Employees
+            return await _appDbContext.Employees
                 .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
         }
 
         /// <sinheritdoc/>
         public async Task<Employee> GetEmployeeByEmail(string email)
         {
-            return await appDbContext.Employees
+            return await _appDbContext.Employees
                 .FirstOrDefaultAsync(e => e.Email == email);
         }
 
         /// <sinheritdoc/>
         public async Task<Employee> AddEmployee(Employee employee)
         {
-            var result = await appDbContext.Employees.AddAsync(employee);
-            await appDbContext.SaveChangesAsync();
+            var result = await _appDbContext.Employees.AddAsync(employee);
+            await _appDbContext.SaveChangesAsync();
             return result.Entity;
         }
 
         /// <sinheritdoc/>
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
-            var result = await appDbContext.Employees
+            var result = await _appDbContext.Employees
                 .FirstOrDefaultAsync(e => e.EmployeeId == employee.EmployeeId);
 
             if (result != null)
@@ -64,7 +64,7 @@ namespace EmployeeManagement.Api.Models
                 result.DepartmentId = employee.DepartmentId;
                 result.PhotoPath = employee.PhotoPath;
 
-                await appDbContext.SaveChangesAsync();
+                await _appDbContext.SaveChangesAsync();
 
                 return result;
             }
@@ -75,12 +75,12 @@ namespace EmployeeManagement.Api.Models
         /// <sinheritdoc/>
         public async Task<Employee> DeleteEmployee(int employeeId)
         {
-            var result = await appDbContext.Employees
+            var result = await _appDbContext.Employees
                 .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
             if (result != null)
             {
-                appDbContext.Employees.Remove(result);
-                await appDbContext.SaveChangesAsync();
+                _appDbContext.Employees.Remove(result);
+                await _appDbContext.SaveChangesAsync();
                 return result;
             }
 
@@ -90,7 +90,7 @@ namespace EmployeeManagement.Api.Models
         /// <sinheritdoc/>
         public async Task<IEnumerable<Employee>> Search(string name, Gender? gender)
         {
-            IQueryable<Employee> query = appDbContext.Employees;
+            IQueryable<Employee> query = _appDbContext.Employees;
 
             if (!string.IsNullOrEmpty(name))
             {
