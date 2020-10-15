@@ -22,6 +22,11 @@ namespace EmployeeManagement.Web.Pages
         /// </summary>
         public IEnumerable<Employee> Employees { get; set; }
 
+        /// <summary>
+        /// Gets sets Show Footer
+        /// </summary>
+        public bool ShowFooter { get; set; } = true;
+
         /// <sinheritdoc/>
         protected override async Task OnInitializedAsync()
         {
