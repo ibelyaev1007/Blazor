@@ -35,6 +35,26 @@ namespace EmployeeManagement.Web.Pages
             //await Task.Run(LoadEmployees);
         }
 
+        /// <summary>
+        /// Gets sets selected Employees count
+        /// </summary>
+        protected int SelectedEmployeesCount { get; set; } = 0;
+
+        /// <summary>
+        /// Employee selection changed
+        /// </summary>
+        protected void EmployeeSelectionChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                SelectedEmployeesCount++;
+            }
+            else
+            {
+                SelectedEmployeesCount--;
+            }
+        }
+
         // Need for test without DB
         //private void LoadEmployees()
         //{
