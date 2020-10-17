@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using EmployeeManagement.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
@@ -20,15 +22,34 @@ namespace EmployeeManagement.Web.Pages
         public IEmployeeService EmployeeService { get; set; }
 
         /// <summary>
+        /// Department Service
+        /// use [Inject] attribute to inject a service into a Blazor component.
+        /// </summary>
+        [Inject]
+        public IDepartmentService DepartmentService { get; set; }
+
+        /// <summary>
         /// Gets, sets Id 
         /// </summary>
         [Parameter]
         public string Id { get; set; }
 
+        /// <summary>
+        /// Gets, sets Departments 
+        /// </summary>
+        public List<Department> Departments { get; set; } = new List<Department>();
+
+        /// <summary>
+        /// Gets, sets DepartmentId 
+        /// </summary>
+        public string DepartmentId { get; set; }
+
         /// <sinheritdoc/>
         protected override async Task OnInitializedAsync()
         {
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
+            Departments = (await DepartmentService.GetDepartments()).ToList();
+            DepartmentId = Employee.DepartmentId.ToString();
         }
     }
 }

@@ -14,7 +14,9 @@ namespace EmployeeManagement.Api.Models
         /// </summary>
         private readonly AppDbContext _appDbContext;
 
-        /// <sinheritdoc/>
+        /// <summary>
+        /// ctor initialize employee repository
+        /// </summary>
         public EmployeeRepository(AppDbContext appDbContext)
         {
             this._appDbContext = appDbContext;
