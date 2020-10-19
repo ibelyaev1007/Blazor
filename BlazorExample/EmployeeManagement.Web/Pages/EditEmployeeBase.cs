@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeManagement.Models;
@@ -39,17 +40,11 @@ namespace EmployeeManagement.Web.Pages
         /// </summary>
         public List<Department> Departments { get; set; } = new List<Department>();
 
-        /// <summary>
-        /// Gets, sets DepartmentId 
-        /// </summary>
-        public string DepartmentId { get; set; }
-
         /// <sinheritdoc/>
         protected override async Task OnInitializedAsync()
         {
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
             Departments = (await DepartmentService.GetDepartments()).ToList();
-            DepartmentId = Employee.DepartmentId.ToString();
         }
     }
 }
