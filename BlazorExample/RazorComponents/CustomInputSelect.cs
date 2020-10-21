@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 
-namespace EmployeeManagement.Web.Pages
+namespace RazorComponents
 {
     /*
      *  InputSelect does not support the type System.Int32 see source code below
