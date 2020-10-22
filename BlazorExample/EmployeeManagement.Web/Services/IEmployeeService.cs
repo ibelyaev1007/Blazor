@@ -23,5 +23,10 @@ namespace EmployeeManagement.Web.Services
         /// Update Employee
         /// </summary>
         Task<Employee> UpdateEmployee(Employee updatedEmployee);
+
+        /// <summary>
+        /// Create Employee
+        /// </summary>
+        Task<Employee> CreateEmployee(Employee newEmployee);
     }
 }

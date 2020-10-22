@@ -40,5 +40,11 @@ namespace EmployeeManagement.Web.Services
         {
             return await _httpClient.PutJsonAsync<Employee>("api/employees", updatedEmployee);
         }
+
+        /// <sinheritdoc/>
+        public async Task<Employee> CreateEmployee(Employee newEmployee)
+        {
+            return await _httpClient.PostJsonAsync<Employee>("api/employees", newEmployee);
+        }
     }
 }

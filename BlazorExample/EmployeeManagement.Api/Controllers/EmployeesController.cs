@@ -89,7 +89,7 @@ namespace EmployeeManagement.Api.Controllers
                 }
 
                 // Add custom model validation error
-                var emp = employeeRepository.GetEmployeeByEmail(employee.Email);
+                var emp = await employeeRepository.GetEmployeeByEmail(employee.Email);
 
                 if (emp != null)
                 {
