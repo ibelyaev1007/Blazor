@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EmployeeManagement.Models;
 using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
@@ -36,6 +37,13 @@ namespace EmployeeManagement.Web.Pages
         public IDepartmentService DepartmentService { get; set; }
 
         /// <summary>
+        /// Auto Mapper
+        /// use [Inject] attribute to inject a service into a Blazor component.
+        /// </summary>
+        [Inject]
+        public IMapper Mapper { get; set; }
+
+        /// <summary>
         /// Gets, sets Id 
         /// </summary>
         [Parameter]
@@ -52,16 +60,19 @@ namespace EmployeeManagement.Web.Pages
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
             Departments = (await DepartmentService.GetDepartments()).ToList();
 
-            EditEmployeeModel.EmployeeId = Employee.EmployeeId;
-            EditEmployeeModel.FirstName = Employee.FirstName;
-            EditEmployeeModel.LastName = Employee.LastName;
-            EditEmployeeModel.Email = Employee.Email;
-            EditEmployeeModel.ConfirmEmail = Employee.Email;
-            EditEmployeeModel.DateOfBrith = Employee.DateOfBrith;
-            EditEmployeeModel.Gender = Employee.Gender;
-            EditEmployeeModel.PhotoPath = Employee.PhotoPath;
-            EditEmployeeModel.DepartmentId = Employee.DepartmentId;
-            EditEmployeeModel.Department = Employee.Department;
+
+            Mapper.Map(Employee, EditEmployeeModel);
+            // Mapper.Map do operation below
+            //EditEmployeeModel.EmployeeId = Employee.EmployeeId;
+            //EditEmployeeModel.FirstName = Employee.FirstName;
+            //EditEmployeeModel.LastName = Employee.LastName;
+            //EditEmployeeModel.Email = Employee.Email;
+            //EditEmployeeModel.ConfirmEmail = Employee.Email;
+            //EditEmployeeModel.DateOfBrith = Employee.DateOfBrith;
+            //EditEmployeeModel.Gender = Employee.Gender;
+            //EditEmployeeModel.PhotoPath = Employee.PhotoPath;
+            //EditEmployeeModel.DepartmentId = Employee.DepartmentId;
+            //EditEmployeeModel.Department = Employee.Department;
         }
 
         /// <summary>
