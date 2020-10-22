@@ -44,6 +44,13 @@ namespace EmployeeManagement.Web.Pages
         public IMapper Mapper { get; set; }
 
         /// <summary>
+        /// Navigation Manager
+        /// use [Inject] attribute to inject a service into a Blazor component.
+        /// </summary>
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
+        /// <summary>
         /// Gets, sets Id 
         /// </summary>
         [Parameter]
@@ -78,7 +85,14 @@ namespace EmployeeManagement.Web.Pages
         /// <summary>
         /// Handle valid Submit from form
         /// </summary>
-        protected void HandleValidSubmit()
-        { }
+        protected async void HandleValidSubmit()
+        {
+            Mapper.Map(EditEmployeeModel, Employee);
+            var result = await EmployeeService.UpdateEmployee(Employee);
+            if (result != null)
+            {
+                NavigationManager.NavigateTo("/");
+            }
+        }
     }
 }

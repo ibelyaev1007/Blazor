@@ -18,5 +18,10 @@ namespace EmployeeManagement.Web.Services
         /// Get employee by id
         /// </summary>
         Task<Employee> GetEmployee(int id);
+
+        /// <summary>
+        /// Update Employee
+        /// </summary>
+        Task<Employee> UpdateEmployee(Employee updatedEmployee);
     }
 }
