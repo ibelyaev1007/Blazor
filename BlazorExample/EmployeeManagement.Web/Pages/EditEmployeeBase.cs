@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeManagement.Models;
+using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
 
@@ -13,7 +14,12 @@ namespace EmployeeManagement.Web.Pages
         /// <summary>
         /// Gets, sets employee
         /// </summary>
-        public Employee Employee { get; set; } = new Employee();
+        private Employee Employee { get; set; } = new Employee();
+
+        /// <summary>
+        /// Gets, sets edit employee model
+        /// </summary>
+        public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
 
         /// <summary>
         /// Employee Service
@@ -45,6 +51,23 @@ namespace EmployeeManagement.Web.Pages
         {
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
             Departments = (await DepartmentService.GetDepartments()).ToList();
+
+            EditEmployeeModel.EmployeeId = Employee.EmployeeId;
+            EditEmployeeModel.FirstName = Employee.FirstName;
+            EditEmployeeModel.LastName = Employee.LastName;
+            EditEmployeeModel.Email = Employee.Email;
+            EditEmployeeModel.ConfirmEmail = Employee.Email;
+            EditEmployeeModel.DateOfBrith = Employee.DateOfBrith;
+            EditEmployeeModel.Gender = Employee.Gender;
+            EditEmployeeModel.PhotoPath = Employee.PhotoPath;
+            EditEmployeeModel.DepartmentId = Employee.DepartmentId;
+            EditEmployeeModel.Department = Employee.Department;
         }
+
+        /// <summary>
+        /// Handle valid Submit from form
+        /// </summary>
+        protected void HandleValidSubmit()
+        { }
     }
 }
