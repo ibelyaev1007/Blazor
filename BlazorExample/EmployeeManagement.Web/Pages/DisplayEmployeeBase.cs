@@ -1,11 +1,24 @@
 ﻿using System.Threading.Tasks;
 using EmployeeManagement.Models;
+using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace EmployeeManagement.Web.Pages
 {
     public class DisplayEmployeeBase : ComponentBase
     {
+        /// <summary>
+        /// Gets sets Employee Service
+        /// </summary>
+        [Inject]
+        public IEmployeeService EmployeeService { get; set; }
+
+        /// <summary>
+        /// Gets sets Navigation Manager
+        /// </summary>
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         /// <summary>
         /// Gets sets Employee
         /// </summary>
@@ -25,6 +38,12 @@ namespace EmployeeManagement.Web.Pages
         public EventCallback<bool> OnEmployeeSelection { get; set; }
 
         /// <summary>
+        /// Employee Deleted callback
+        /// </summary>
+        [Parameter]
+        public EventCallback<int> OnEmployeeDeleted { get; set; }
+
+        /// <summary>
         /// Gets sets is selected
         /// </summary>
         protected bool IsSelected { get; set; }
@@ -36,6 +55,17 @@ namespace EmployeeManagement.Web.Pages
         {
             IsSelected = (bool)e.Value;
             await OnEmployeeSelection.InvokeAsync(IsSelected);
+        }
+
+        /// <summary>
+        /// Delete button click
+        /// </summary>
+        protected async Task Delete_Click()
+        {
+            await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+            await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+            // Possible update page, but lost scroll position
+            //NavigationManager.NavigateTo("/", true);
         }
     }
 }

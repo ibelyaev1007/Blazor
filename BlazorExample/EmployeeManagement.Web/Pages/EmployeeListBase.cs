@@ -55,6 +55,14 @@ namespace EmployeeManagement.Web.Pages
             }
         }
 
+        /// <summary>
+        /// Employee deleted
+        /// </summary>
+        protected async Task EmployeeDeleted()
+        {
+            Employees = (await EmployeeService.GetEmployees()).ToList();
+        }
+
         // Need for test without DB
         //private void LoadEmployees()
         //{
