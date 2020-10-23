@@ -2,6 +2,7 @@
 using EmployeeManagement.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
+using RazorComponents;
 
 namespace EmployeeManagement.Web.Pages
 {
@@ -57,15 +58,34 @@ namespace EmployeeManagement.Web.Pages
             await OnEmployeeSelection.InvokeAsync(IsSelected);
         }
 
+        protected ConfirmBase DeleteConfirmation { get; set; }
+
         /// <summary>
         /// Delete button click
         /// </summary>
-        protected async Task Delete_Click()
+        protected void Delete_Click()
         {
-            await EmployeeService.DeleteEmployee(Employee.EmployeeId);
-            await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
-            // Possible update page, but lost scroll position
-            //NavigationManager.NavigateTo("/", true);
+            DeleteConfirmation.Show();
         }
+
+        protected async Task ConfirmDelete_Click(bool deleteConfirmed)
+        {
+            if (deleteConfirmed)
+            {
+                await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+                await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+            }
+        }
+
+        /// <summary>
+        /// Delete button click without dialog
+        /// </summary>
+        //protected async Task Delete_Click()
+        //{
+        //    await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+        //    await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+        //    // Possible update page, but lost scroll position
+        //    //NavigationManager.NavigateTo("/", true);
+        //}
     }
 }

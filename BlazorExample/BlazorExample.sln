@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Web", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Api", "EmployeeManagement.Api\EmployeeManagement.Api.csproj", "{9CF3A7FA-971B-4CD4-9AC1-57B0FE07CB2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorComponents", "RazorComponents\RazorComponents.csproj", "{ADBEBC1F-8FEE-44A3-9B7E-B4BB20117153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorComponents", "RazorComponents\RazorComponents.csproj", "{ADBEBC1F-8FEE-44A3-9B7E-B4BB20117153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
