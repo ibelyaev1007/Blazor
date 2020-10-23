@@ -57,6 +57,11 @@ namespace EmployeeManagement.Web.Pages
         public string Id { get; set; }
 
         /// <summary>
+        /// Page header
+        /// </summary>
+        public string PageHeader { get; set; }
+
+        /// <summary>
         /// Gets, sets Departments 
         /// </summary>
         public List<Department> Departments { get; set; } = new List<Department>();
@@ -68,10 +73,12 @@ namespace EmployeeManagement.Web.Pages
 
             if (employeeId != 0)
             {
+                PageHeader = "Edit Employee";
                 Employee = await EmployeeService.GetEmployee(int.Parse(Id));
             }
             else
             {
+                PageHeader = "Create Employee";
                 Employee = new Employee
                 {
                     DepartmentId = 1,
