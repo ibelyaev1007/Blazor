@@ -113,5 +113,14 @@ namespace EmployeeManagement.Web.Pages
                 NavigationManager.NavigateTo("/");
             }
         }
+
+        /// <summary>
+        /// Delete by click
+        /// </summary>
+        protected async Task Delete_Click()
+        {
+            await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+            NavigationManager.NavigateTo("/");
+        }
     }
 }

@@ -28,5 +28,10 @@ namespace EmployeeManagement.Web.Services
         /// Create Employee
         /// </summary>
         Task<Employee> CreateEmployee(Employee newEmployee);
+
+        /// <summary>
+        /// Delete Employee by id
+        /// </summary>
+        Task DeleteEmployee(int id);
     }
 }
